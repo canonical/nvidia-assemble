@@ -1,0 +1,45 @@
+name: nvidia-assemble
+adopt-info: version
+grade: stable
+summary: assemble and load Nvidia drivers
+description: assemble and load Nvidia drivers
+confinement: strict
+base: core20
+
+apps:
+  nvidia-assemble:
+    command: commands/nvidia-assemble
+  ub-device-create:
+    command: sbin/ub-device-create
+
+parts:
+
+  version:
+    plugin: nil
+    source: .
+    build-packages:
+      - git
+    override-pull: |
+      snapcraftctl pull
+      snapcraftctl set-version "$(git describe --tags)"
+    override-stage: |
+      true
+
+  nvidia-assemble:
+    plugin: dump
+    source: ./nvidia-assemble/
+
+  deps:
+    plugin: nil
+    stage-packages:
+      - binutils
+      - nvidia-kernel-common-470-server
+    stage:
+      - sbin/ub-device-create
+      - usr/lib/*/lib*
+      - lib/modprobe.d/
+      - usr/bin/*-ld.bfd
+      - usr/bin/*-ld
+      - usr/bin/ld
+      - usr/share/doc/*/changelog*
+      - usr/share/doc/*/copyright

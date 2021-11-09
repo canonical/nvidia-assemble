@@ -1,0 +1,20 @@
+#!/bin/sh
+set -eux
+
+nvidia_dir=/lib/modules/*/nvidia-*
+# Check nvidia_dir
+[ -e $nvidia_dir/bits/SHA256SUMS ]
+
+if ! cmp -s $nvidia_dir/bits/SHA256SUMS $SNAP_COMMON/nvidia-driver/bits/SHA256SUMS
+then
+    rm -rf $SNAP_COMMON/nvidia-driver
+    cp -r $nvidia_dir $SNAP_COMMON/nvidia-driver
+    cd $SNAP_COMMON/nvidia-driver/bits
+    sh BUILD
+fi
+
+cp --verbose $SNAP/rules.d/*.rules /etc/udev/rules.d/
+cp --verbose $SNAP/lib/modprobe.d/*.conf /etc/modprobe.d/
+
+udevadm control --reload
+udevadm trigger --wait-daemon --settle --type=devices --subsystem-match=pci --attr-match=vendor=0x10de
