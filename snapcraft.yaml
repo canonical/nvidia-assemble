@@ -6,9 +6,23 @@ description: assemble and load Nvidia drivers
 confinement: strict
 base: core20
 
+plugs:
+  udev-rules:
+    interface: system-files
+    write:
+      - /etc/udev/rules.d
+
+  modprobe:
+    interface: system-files
+    write:
+      - /etc/modprobe.d
+
 apps:
   nvidia-assemble:
     command: commands/nvidia-assemble
+    plugs:
+      - udev-rules
+      - modprobe
   ub-device-create:
     command: sbin/ub-device-create
 
@@ -39,7 +53,6 @@ parts:
       - usr/lib/*/lib*
       - lib/modprobe.d/
       - usr/bin/*-ld.bfd
-      - usr/bin/*-ld
-      - usr/bin/ld
+      - usr/bin/ld.bfd
       - usr/share/doc/*/changelog*
       - usr/share/doc/*/copyright
