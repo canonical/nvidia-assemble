@@ -1,24 +1,16 @@
 # Tag the device as master-of-seat so that logind is happy
 # (see LP: #1365336)
-SUBSYSTEM=="pci", ATTRS{vendor}=="0x10de", DRIVERS=="nvidia", TAG+="seat", TAG+="master-of-seat"
+SUBSYSTEM=="pci", ATTRS{vendor}=="0x10de", TAG+="seat", TAG+="master-of-seat"
 
-# Load and unload nvidia-modeset module
-ACTION=="add", DEVPATH=="/bus/pci/drivers/nvidia", RUN+="/sbin/modprobe /var/snap/nvidia-assemble/common/nvidia-driver/nvidia-modeset.ko"
-ACTION=="remove", DEVPATH=="/bus/pci/drivers/nvidia", RUN+="/sbin/modprobe -r nvidia-modeset"
-
-# Load and unload nvidia-drm module
-ACTION=="add", DEVPATH=="/bus/pci/drivers/nvidia", RUN+="/sbin/modprobe /var/snap/nvidia-assemble/common/nvidia-driver/nvidia-drm.ko"
-ACTION=="remove", DEVPATH=="/bus/pci/drivers/nvidia", RUN+="/sbin/modprobe -r nvidia-drm"
-
-# Load and unload nvidia-uvm module
-ACTION=="add", DEVPATH=="/bus/pci/drivers/nvidia", RUN+="/sbin/modprobe /var/snap/nvidia-assemble/common/nvidia-driver/nvidia-uvm.ko"
-ACTION=="remove", DEVPATH=="/bus/pci/drivers/nvidia", RUN+="/sbin/modprobe -r nvidia-uvm"
+# Load and unload nvidia module
+ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", RUN+="/sbin/modprobe drm"
+ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", RUN+="/sbin/insmod /var/snap/nvidia-assemble/common/nvidia-driver/nvidia.ko"
+ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", RUN+="/sbin/insmod /var/snap/nvidia-assemble/common/nvidia-driver/nvidia-modeset.ko"
+ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", RUN+="/sbin/insmod /var/snap/nvidia-assemble/common/nvidia-driver/nvidia-drm.ko"
+ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", RUN+="/sbin/insmod /var/snap/nvidia-assemble/common/nvidia-driver/nvidia-uvm.ko"
 
 # This will create the device nvidia device nodes
 ACTION=="add", DEVPATH=="/bus/pci/drivers/nvidia", RUN+="/snap/bin/nvidia-assemble.ub-device-create"
-
-# Create the device node for the nvidia-uvm module
-ACTION=="add", DEVPATH=="/module/nvidia_uvm", SUBSYSTEM=="module", RUN+="/snap/bin/nvidia-assemble.ub-device-create"
 
 # Enable runtime PM for NVIDIA VGA/3D controller devices
 ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x03[0-9]*", TEST=="power/control", ATTR{power/control}="auto"
