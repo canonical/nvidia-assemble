@@ -9,8 +9,8 @@ ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", RUN+="/sbin/insmod /var
 ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", RUN+="/sbin/insmod /var/snap/nvidia-assemble/common/nvidia-driver/nvidia-drm.ko"
 ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", RUN+="/sbin/insmod /var/snap/nvidia-assemble/common/nvidia-driver/nvidia-uvm.ko"
 
-# This will create the device nvidia device nodes
-ACTION=="add", DEVPATH=="/bus/pci/drivers/nvidia", RUN+="/snap/bin/nvidia-assemble.ub-device-create"
+# This will create the device nvidia device nodes, note unconfined
+ACTION=="add", DEVPATH=="/bus/pci/drivers/nvidia", RUN+="/snap/nvidia-assemble/current/sbin/ub-device-create"
 
 # Enable runtime PM for NVIDIA VGA/3D controller devices
 ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x03[0-9]*", TEST=="power/control", ATTR{power/control}="auto"
