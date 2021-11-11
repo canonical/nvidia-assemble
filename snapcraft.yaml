@@ -20,6 +20,7 @@ plugs:
 apps:
   nvidia-assemble:
     command: commands/nvidia-assemble
+    daemon: oneshot
     plugs:
       - udev-rules
       - modprobe
