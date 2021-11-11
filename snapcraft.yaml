@@ -56,6 +56,8 @@ parts:
       - usr/bin/ld.bfd
       - usr/share/doc/*/changelog*
       - usr/share/doc/*/copyright
+    organize:
+      lib/modprobe.d/nvidia-graphics-drivers.conf: lib/modprobe.d/snap.nvidia-assemble.conf
     override-stage: |
       snapcraftctl stage
       /snap/snapcraft/current/bin/patchelf --set-rpath /snap/nvidia-assemble/current/usr/lib/$(dpkg-architecture -q DEB_HOST_MULTIARCH) $SNAPCRAFT_STAGE/sbin/ub-device-create
