@@ -27,6 +27,7 @@ apps:
     command: sbin/ub-device-create
     plugs:
       - kernel-module-observe
+      - opengl
 
 parts:
 
