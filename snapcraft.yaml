@@ -24,6 +24,7 @@ apps:
     plugs:
       - udev-rules
       - modprobe
+      - hardware-observe
 
 parts:
 
