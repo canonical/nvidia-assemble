@@ -26,6 +26,12 @@ apps:
       - modprobe
       - hardware-observe
 
+hooks:
+  remove:
+    plugs:
+      - udev-rules
+      - modprobe
+
 parts:
 
   version:
