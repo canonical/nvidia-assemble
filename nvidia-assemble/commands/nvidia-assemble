@@ -14,8 +14,8 @@ then
     sh BUILD
 fi
 
-cp --verbose $SNAP/lib/udev/rules.d/*.rules /etc/udev/rules.d/
-cp --verbose $SNAP/lib/modprobe.d/*.conf /etc/modprobe.d/
+cp --verbose $SNAP/lib/udev/rules.d/*.rules /etc/udev/rules.d/ || echo system-files not connected
+cp --verbose $SNAP/lib/modprobe.d/*.conf /etc/modprobe.d/ || echo system-files not connected
 
 /bin/udevadm control --reload || echo Permission denied
 /bin/udevadm trigger --wait-daemon --settle --type=devices --subsystem-match=pci --attr-match=vendor=0x10de || echo Permission denied
