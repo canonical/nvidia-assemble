@@ -2,7 +2,10 @@
 # (see LP: #1365336)
 SUBSYSTEM=="pci", ATTRS{vendor}=="0x10de", TAG+="seat", TAG+="master-of-seat"
 
-# Load and unload nvidia module
+# Unload nouveau
+SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", RUN+="/sbin/modprobe -r nouveau"
+
+# Load nvidia module
 ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", RUN+="/sbin/modprobe drm"
 ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", RUN+="/sbin/insmod /var/snap/nvidia-assemble/common/nvidia-driver/nvidia.ko"
 ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", RUN+="/sbin/insmod /var/snap/nvidia-assemble/common/nvidia-driver/nvidia-modeset.ko"
