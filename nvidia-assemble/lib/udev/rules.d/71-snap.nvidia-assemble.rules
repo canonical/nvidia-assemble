@@ -9,7 +9,7 @@ SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", RUN+="/sbin/modprobe -C /dev/null -r n
 ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", RUN+="/sbin/modprobe drm"
 ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", RUN+="/sbin/insmod /var/snap/nvidia-assemble/common/nvidia-driver/nvidia.ko"
 ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", RUN+="/sbin/insmod /var/snap/nvidia-assemble/common/nvidia-driver/nvidia-modeset.ko"
-ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", RUN+="/sbin/insmod /var/snap/nvidia-assemble/common/nvidia-driver/nvidia-drm.ko"
+ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", RUN+="/sbin/insmod /var/snap/nvidia-assemble/common/nvidia-driver/nvidia-drm.ko modeset=1"
 ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", RUN+="/sbin/insmod /var/snap/nvidia-assemble/common/nvidia-driver/nvidia-uvm.ko"
 
 # This will create the device nvidia device nodes, note unconfined
