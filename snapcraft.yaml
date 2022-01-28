@@ -6,6 +6,9 @@ description: assemble and load Nvidia drivers
 confinement: strict
 base: core20
 
+architectures:
+  - build-on: amd64
+
 plugs:
   udev-rules:
     interface: system-files
