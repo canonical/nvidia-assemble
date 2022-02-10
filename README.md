@@ -12,9 +12,9 @@ Ubuntu Core system.
 
 ## Quick Start
 
-    $ sudo snap refresh pc-kernel --channel 20/edge
+    $ sudo snap refresh pc-kernel --channel 22/edge
     $ reboot
-    $ sudo snap install --devmode nvidia-assemble --channel 20/edge
+    $ sudo snap install --devmode nvidia-assemble --channel 22/edge
 
 ## Quick Checks
 
@@ -29,21 +29,21 @@ and that nvidia drivers are loaded into the kernel.
 Install content provider with userspace libraries, install sample demo
 apps, and connect the content provider.
 
-    $ sudo snap install nvidia-core20
-    $ sudo snap install --devmode graphics-core20-samples
-    $ sudo snap connect graphics-core20-samples:graphics-core20 nvidia-core20:graphics-core20
+    $ sudo snap install nvidia-core22
+    $ sudo snap install --devmode graphics-core22-samples
+    $ sudo snap connect graphics-core22-samples:graphics-core22 nvidia-core22:graphics-core22
 
 After above setup is done one can query EGL card information, query
 CUDA device information, and execute a sample CUDA application:
 
-    $ sudo graphics-core20-samples.eglinfo
-    $ sudo graphics-core20-samples.deviceQuery
-    $ sudo graphics-core20-samples.bandwidthTest
+    $ sudo graphics-core22-samples.eglinfo
+    $ sudo graphics-core22-samples.deviceQuery
+    $ sudo graphics-core22-samples.bandwidthTest
 
 ## How to use drivers from your own snap
 
 Once the drivers are available on the system, one can use
-[nvidia-core20](https://github.com/xnox/nvidia-core20) graphics-core20
+[nvidia-core22](https://github.com/xnox/nvidia-core22) graphics-core22
 content interface provider in your snap to provide userspace libraries
 to access NVIDIA graphics card functionality. This content interface
 can be used if stock userspace libraries are sufficient for a given
@@ -52,11 +52,11 @@ snaps. Alternatively, one can simply stage one's own userspace
 dependencies as required.
 
 Samples of GL & CUDA CLI applications are available from
-[graphics-core20-samples](https://github.com/xnox/graphics-core20-samples). This
+[graphics-core22-samples](https://github.com/xnox/graphics-core22-samples). This
 is an example snap that vendors existing GL binaries, and complies a
 CUDA binary from source. The snapcraft.yaml for this sample removes
 staged libraries from the snap, such that at runtime all libraries are
-used from the nvidia-core20 graphics-core20 content provider.
+used from the nvidia-core22 graphics-core22 content provider.
 
 ## Troubleshooting
 

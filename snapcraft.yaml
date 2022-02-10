@@ -4,7 +4,7 @@ grade: stable
 summary: assemble and load Nvidia drivers
 description: assemble and load Nvidia drivers
 confinement: strict
-base: core20
+base: core22
 
 architectures:
   - build-on: amd64
