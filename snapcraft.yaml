@@ -58,7 +58,7 @@ parts:
       - dpkg-dev
     stage-packages:
       - binutils
-      - nvidia-kernel-common-470-server
+      - nvidia-kernel-common-510-server
     stage:
       - sbin/ub-device-create
       - usr/lib/*/lib*
