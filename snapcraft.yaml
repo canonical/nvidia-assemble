@@ -1,6 +1,6 @@
 name: nvidia-assemble
 adopt-info: version
-grade: devel
+grade: stable
 summary: assemble and load Nvidia drivers
 description: assemble and load Nvidia drivers
 confinement: strict
