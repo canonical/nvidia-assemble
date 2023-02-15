@@ -16,11 +16,6 @@ plugs:
     write:
       - /etc/udev/rules.d
 
-  modprobe:
-    interface: system-files
-    write:
-      - /etc/modprobe.d
-
 apps:
   nvidia-assemble:
     command: commands/nvidia-assemble
@@ -63,13 +58,10 @@ parts:
     stage:
       - sbin/ub-device-create
       - usr/lib/*/lib*
-      - lib/modprobe.d/
       - usr/bin/*-ld.bfd
       - usr/bin/ld.bfd
       - usr/share/doc/*/changelog*
       - usr/share/doc/*/copyright
-    organize:
-      lib/modprobe.d/nvidia-graphics-drivers.conf: lib/modprobe.d/snap.nvidia-assemble.conf
     override-stage: |
       snapcraftctl stage
       /snap/snapcraft/current/bin/patchelf --set-rpath /snap/nvidia-assemble/current/usr/lib/$(dpkg-architecture -q DEB_HOST_MULTIARCH) $SNAPCRAFT_STAGE/sbin/ub-device-create
