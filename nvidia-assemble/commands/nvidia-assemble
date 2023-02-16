@@ -14,7 +14,5 @@ then
     sh BUILD
 fi
 
-cp --verbose $SNAP/lib/udev/rules.d/*.rules /etc/udev/rules.d/ || echo system-files not connected
-
-/bin/udevadm control --reload || echo Permission denied
-/bin/udevadm trigger --wait-daemon --settle --type=devices --subsystem-match=pci --attr-match=vendor=0x10de --action=add || echo Permission denied
+modprobe nvidia-drm modeset=1
+modprobe nvidia-uvm

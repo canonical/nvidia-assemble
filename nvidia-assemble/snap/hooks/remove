@@ -1,3 +1,0 @@
-#!/bin/sh
-set -eux
-rm --verbose /etc/udev/rules.d/71-snap.nvidia-assemble.rules || true

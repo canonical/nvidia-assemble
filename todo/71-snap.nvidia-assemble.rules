@@ -3,13 +3,8 @@
 SUBSYSTEM=="pci", ATTRS{vendor}=="0x10de", TAG+="seat", TAG+="master-of-seat"
 
 # Load nvidia module
-ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", RUN+="/sbin/modprobe nvidia.ko"
-ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", RUN+="/sbin/modprobe nvidia-modeset.ko"
 ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", RUN+="/sbin/modprobe nvidia-drm modeset=1"
 ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", RUN+="/sbin/modprobe nvidia-uvm"
-
-# This will create the device nvidia device nodes, note unconfined
-ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", RUN+="/snap/nvidia-assemble/current/sbin/ub-device-create"
 
 # Enable runtime PM for NVIDIA VGA/3D controller devices
 ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x03[0-9]*", TEST=="power/control", ATTR{power/control}="auto"

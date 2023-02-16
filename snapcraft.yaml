@@ -10,26 +10,12 @@ architectures:
   - build-on: amd64
   - build-on: arm64
 
-plugs:
-  udev-rules:
-    interface: system-files
-    write:
-      - /etc/udev/rules.d
-
 apps:
   nvidia-assemble:
     command: commands/nvidia-assemble
     daemon: oneshot
     plugs:
-      - udev-rules
-      - modprobe
-      - hardware-observe
-
-hooks:
-  remove:
-    plugs:
-      - udev-rules
-      - modprobe
+      - kernel-module-control
 
 parts:
 
@@ -54,14 +40,9 @@ parts:
       - dpkg-dev
     stage-packages:
       - binutils
-      - nvidia-kernel-common-515-server
     stage:
-      - sbin/ub-device-create
       - usr/lib/*/lib*
       - usr/bin/*-ld.bfd
       - usr/bin/ld.bfd
       - usr/share/doc/*/changelog*
       - usr/share/doc/*/copyright
-    override-stage: |
-      snapcraftctl stage
-      /snap/snapcraft/current/bin/patchelf --set-rpath /snap/nvidia-assemble/current/usr/lib/$(dpkg-architecture -q DEB_HOST_MULTIARCH) $SNAPCRAFT_STAGE/sbin/ub-device-create
