@@ -17,6 +17,16 @@ apps:
     plugs:
       - kernel-module-control
 
+plugs:
+  modprobe-nvidia:
+    interface: kernel-module-load
+    modules:
+      - name: nvidia-drm
+        load: on-boot
+        options: modeset=1
+      - name: nvidia-uvm
+        load: on-boot
+
 parts:
 
   version:
