@@ -8,7 +8,8 @@ nvidia_dir=/lib/modules/*/kernel/nvidia-*
 if ! cmp -s $nvidia_dir/bits/SHA256SUMS $SNAP_COMMON/nvidia-driver/bits/SHA256SUMS
 then
     rm -rf $SNAP_COMMON/nvidia-driver
-    cp -r $nvidia_dir $SNAP_COMMON/nvidia-driver
+    mkdir -p $SNAP_COMMON/nvidia-driver
+    cp -r $nvidia_dir/bits $SNAP_COMMON/nvidia-driver/
     cd $SNAP_COMMON/nvidia-driver/bits
     sed -i 's|/usr/bin/ld.bfd|ld.bfd|' BUILD
     sh BUILD
