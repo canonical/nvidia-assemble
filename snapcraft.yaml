@@ -1,5 +1,5 @@
 name: nvidia-assemble
-adopt-info: version
+adopt-info: set_version
 grade: stable
 summary: assemble and load Nvidia drivers
 description: assemble and load Nvidia drivers
@@ -29,13 +29,13 @@ plugs:
 
 parts:
 
-  version:
+  set_version:
     plugin: nil
     source: .
     build-packages:
       - git
-    override-pull: |
-      snapcraftctl pull
+    override-build: |
+      snapcraftctl build
       snapcraftctl set-version "$(git describe --tags)"
     override-stage: |
       true
