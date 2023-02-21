@@ -14,7 +14,7 @@ Ubuntu Core system.
 
     $ snap refresh pc-kernel --channel 22/candidate/xnox-nvidia-pc
     $ snap install nvidia-assemble --channel 22/stable
-    $ snap connect nvida-assemble:kernel-module-load
+    $ snap connect nvida-assemble:modprobe-nvidia
 
 ## Quick Checks
 
