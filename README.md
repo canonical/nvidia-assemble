@@ -12,9 +12,10 @@ Ubuntu Core system.
 
 ## Quick Start
 
-    $ sudo snap refresh pc-kernel --channel 22/edge
+    $ snap refresh pc-kernel --channel 22/candidate/xnox-nvidia-pc
     $ reboot
-    $ sudo snap install --devmode nvidia-assemble --channel 22/edge
+    $ snap install nvidia-assemble --channel 22/stable
+    $ snap connect nvida-assemble:kernel-module-load
 
 ## Quick Checks
 
@@ -30,7 +31,7 @@ Install content provider with userspace libraries, install sample demo
 apps, and connect the content provider.
 
     $ sudo snap install nvidia-core22
-    $ sudo snap install --devmode graphics-core22-samples
+    $ sudo snap install graphics-core22-samples
     $ sudo snap connect graphics-core22-samples:graphics-core22 nvidia-core22:graphics-core22
 
 After above setup is done one can query EGL card information, query
