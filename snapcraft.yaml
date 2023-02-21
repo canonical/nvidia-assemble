@@ -15,17 +15,17 @@ apps:
     command: commands/nvidia-assemble
     daemon: oneshot
     plugs:
-      - kernel-module-control
+      - modprobe-nvidia
 
 plugs:
   modprobe-nvidia:
     interface: kernel-module-load
     modules:
       - name: nvidia-drm
-        load: on-boot
+        load: dynamic
         options: modeset=1
       - name: nvidia-uvm
-        load: on-boot
+        load: dynamic
 
 parts:
 

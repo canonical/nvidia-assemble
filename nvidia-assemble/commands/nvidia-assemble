@@ -15,5 +15,5 @@ then
     sh BUILD
 fi
 
-modprobe nvidia-drm modeset=1 || echo connect kernel-module-control
-modprobe nvidia-uvm || echo connect kernel-module-control
+snapctl kmod insert nvidia-drm modeset=1 || echo connect modprobe-nvidia
+snapctl kmod insert nvidia-uvm || echo connect modprobe-nvidia
