@@ -1,5 +1,5 @@
 name: nvidia-assemble
-adopt-info: set_version
+adopt-info: nvidia-assemble
 grade: stable
 summary: assemble and load Nvidia drivers
 description: assemble and load Nvidia drivers
@@ -12,7 +12,7 @@ architectures:
 
 apps:
   nvidia-assemble:
-    command: commands/nvidia-assemble
+    command: nvidia-assemble
     daemon: oneshot
     plugs:
       - modprobe-nvidia
@@ -29,28 +29,18 @@ plugs:
 
 parts:
 
-  set_version:
-    plugin: nil
+  nvidia-assemble:
+    plugin: dump
     source: .
     build-packages:
       - git
     override-build: |
-      snapcraftctl build
-      snapcraftctl set-version "$(git describe --tags)"
-    override-stage: |
-      true
-
-  nvidia-assemble:
-    plugin: dump
-    source: ./nvidia-assemble/
-
-  deps:
-    plugin: nil
-    build-packages:
-      - dpkg-dev
+      craftctl default
+      craftctl set version="$(git describe --tags)"
     stage-packages:
       - binutils
     stage:
+      - nvidia-assemble
       - usr/lib/*/lib*
       - usr/bin/*-ld.bfd
       - usr/bin/ld.bfd
