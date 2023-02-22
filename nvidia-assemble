@@ -23,7 +23,7 @@ snapctl kmod insert nvidia-uvm
 # i wish there was `snapctl mknod`
 mknod -m 666 /dev/nvidia0 c 195 0 || echo Need mknod
 mknod -m 666 /dev/nvidiactl c 195 255 || echo Need mknod
-mknod -m 666 /dev/nvidia-modeset 195 254 || echo Need mknod
+mknod -m 666 /dev/nvidia-modeset c 195 254 || echo Need mknod
 
 major=$(sed -n 's|^\([0-9]*\) nvidia-uvm$|\1|p' /proc/devices)
 if [ -n "$major" ]; then
