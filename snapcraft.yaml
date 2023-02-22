@@ -18,6 +18,7 @@ apps:
       - modprobe-nvidia
 
 plugs:
+  opengl:
   modprobe-nvidia:
     interface: kernel-module-load
     modules:
