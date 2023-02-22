@@ -17,3 +17,5 @@ fi
 
 snapctl kmod insert nvidia-drm || echo Needs snap connect nvidia-assemble:modprobe-nvidia
 snapctl kmod insert nvidia-uvm || echo Needs snap connect nvidia-assemble:modprobe-nvidia
+
+chmod 0666 /dev/nvidia*
