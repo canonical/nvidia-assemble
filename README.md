@@ -40,9 +40,9 @@ apps, and connect the content provider.
 After above setup is done one can query EGL card information, query
 CUDA device information, and execute a sample CUDA application:
 
-    $ sudo graphics-core22-samples.eglinfo
-    $ sudo graphics-core22-samples.deviceQuery
-    $ sudo graphics-core22-samples.bandwidthTest
+    $ graphics-core22-samples.eglinfo
+    $ graphics-core22-samples.deviceQuery
+    $ graphics-core22-samples.bandwidthTest
 
 ## How to use drivers from your own snap
 
