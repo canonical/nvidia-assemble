@@ -14,11 +14,10 @@ apps:
   nvidia-assemble:
     command: nvidia-assemble
     daemon: oneshot
-    plugs:
-      - modprobe-nvidia
 
 plugs:
   opengl:
+  microstack-support:
   modprobe-nvidia:
     interface: kernel-module-load
     modules:
