@@ -16,8 +16,7 @@ apps:
     daemon: oneshot
 
 plugs:
-  opengl:
-  microstack-support:
+  nvidia-support:
   modprobe-nvidia:
     interface: kernel-module-load
     modules:
