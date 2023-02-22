@@ -73,12 +73,3 @@ installations:
 
     $ sudo journalctl -b -k
     $ sudo journalctl -b -u snap.nvidia-assemble.service
-
-## Caveats
-
-Some of the above snaps currently are not fully confined and thus are
-installed in devmode. There is ongoing work to allow usage of these
-snaps with full confinment.
-
-The above snaps have been tested on GeForce MX350 and GeForce RTX 3070
-cards.
