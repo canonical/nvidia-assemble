@@ -15,18 +15,24 @@ then
     sh BUILD
 fi
 
-snapctl kmod insert nvidia-drm
-snapctl kmod insert nvidia-uvm
+if snapctl is-connected modprobe-nvidia
+then
+    snapctl kmod insert nvidia-drm
+    snapctl kmod insert nvidia-uvm
+fi
 
-# device_add, which would create these is not available to proprietary modules
-# thus nvidia.ko cannot create these
-# i wish there was `snapctl mknod`
-mknod -m 666 /dev/nvidia0 c 195 0 || echo Need mknod
-mknod -m 666 /dev/nvidiactl c 195 255 || echo Need mknod
-mknod -m 666 /dev/nvidia-modeset c 195 254 || echo Need mknod
+if ! snapctl is-connected nvidia-support
+then
+   echo please connect nvidia-support
+   exit 0
+fi
+
+mknod -m 666 /dev/nvidia0 c 195 0
+mknod -m 666 /dev/nvidiactl c 195 255
+mknod -m 666 /dev/nvidia-modeset c 195 254
 
 major=$(sed -n 's|^\([0-9]*\) nvidia-uvm$|\1|p' /proc/devices)
 if [ -n "$major" ]; then
-    mknod -m 666 /dev/nvidia-uvm c $major 0 || echo Need mknod
-    mknod -m 666 /dev/nvidia-uvm-tools c $major 1 || echo Need mknod
+    mknod -m 666 /dev/nvidia-uvm c $major 0
+    mknod -m 666 /dev/nvidia-uvm-tools c $major 1
 fi
