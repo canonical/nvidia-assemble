@@ -16,7 +16,9 @@ apps:
     daemon: oneshot
 
 plugs:
-  nvidia-support:
+  # Not yet available, install in devmode
+  # https://github.com/snapcore/snapd/pull/12591
+  #nvidia-support:
   modprobe-nvidia:
     interface: kernel-module-load
     modules:

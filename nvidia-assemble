@@ -24,7 +24,8 @@ fi
 if ! snapctl is-connected nvidia-support
 then
    echo please connect nvidia-support
-   exit 0
+   echo attempting execution assuming devmode available
+   set +e
 fi
 
 mknod -m 666 /dev/nvidia0 c 195 0
