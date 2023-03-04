@@ -1,9 +1,9 @@
 #!/bin/sh
 set -eux
 
-nvidia_dir=/lib/modules/*/kernel/nvidia-*
+nvidia_dirs=dirname `dirname /lib/modules/*/kernel/nvidia-*/bits/SHA256SUMS`
 # Check nvidia_dir
-[ -e $nvidia_dir/bits/SHA256SUMS ]
+[ -e $nvidia_dir/bits/SHA256SUMS ] || exit 0
 
 if ! cmp -s $nvidia_dir/bits/SHA256SUMS $SNAP_COMMON/nvidia-driver/bits/SHA256SUMS
 then
