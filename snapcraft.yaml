@@ -18,7 +18,7 @@ apps:
 plugs:
   # Not yet available, install in devmode
   # https://github.com/snapcore/snapd/pull/12591
-  #nvidia-support:
+  #nvidia-drivers-support:
   modprobe-nvidia:
     interface: kernel-module-load
     modules:

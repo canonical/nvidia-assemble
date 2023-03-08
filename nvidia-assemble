@@ -21,9 +21,9 @@ then
     snapctl kmod insert nvidia-uvm
 fi
 
-if ! snapctl is-connected nvidia-support
+if ! snapctl is-connected nvidia-drivers-support
 then
-   echo please connect nvidia-support
+   echo please connect nvidia-drivers-support
    echo attempting execution assuming devmode available
    set +e
 fi
