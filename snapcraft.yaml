@@ -5,6 +5,8 @@ summary: assemble and load Nvidia drivers
 description: assemble and load Nvidia drivers
 confinement: strict
 base: core22
+assumes:
+  - snapd2.59
 
 architectures:
   - build-on: amd64
@@ -16,9 +18,7 @@ apps:
     daemon: oneshot
 
 plugs:
-  # Not yet available, install in devmode
-  # https://github.com/snapcore/snapd/pull/12591
-  #nvidia-drivers-support:
+  nvidia-drivers-support:
   modprobe-nvidia:
     interface: kernel-module-load
     modules:
