@@ -10,11 +10,11 @@ When installed together with a compatible kernel snap, an attempt will
 be made to assemble, load and setup NVIDIA graphics drivers on an
 Ubuntu Core system.
 
-## Quick Start
-
-    $ snap refresh pc-kernel --channel 22/candidate/xnox-nvidia-pc
+## Quick Start on Ubuntu Core 22
+    
+    # snapd2.59 is required
+    $ snap refresh snapd --channel beta
     $ snap install nvidia-assemble --channel 22/stable
-    $ snap connect nvida-assemble:modprobe-nvidia
 
 ## Quick Checks
 
