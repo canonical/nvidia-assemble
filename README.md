@@ -13,7 +13,7 @@ Ubuntu Core system.
 ## Quick Start on Ubuntu Core 22
     
     # snapd2.59 is required
-    $ snap refresh snapd --channel beta
+    $ snap refresh snapd
     $ snap install nvidia-assemble --channel 22/stable
 
 ## Quick Checks
