@@ -1,6 +1,7 @@
 name: nvidia-assemble
 adopt-info: nvidia-assemble
 grade: stable
+license: GPL-3.0
 summary: assemble and load Nvidia drivers
 description: assemble and load Nvidia drivers
 confinement: strict
